@@ -1,9 +1,9 @@
 let image = document.getElementById('image');
 let imageComp = document.getElementById('image-comp');
-let atacar = document.getElementById('btn-atacar')
-let deckPlayer = document.getElementById('deck-player');
+document.getElementById('btn-atacar')
+document.getElementById('deck-player')
 let deckComp = document.getElementById('deck-comp');
-let defender = document.getElementById('btn-defender')
+document.getElementById('btn-defender')
 let cartasPlayer = document.getElementById('cartas-player')
 let cartascomp = document.getElementById('cartas-comp')
 
@@ -148,77 +148,115 @@ const gyokku = {
 }
 
 let indice = 0
-let cards = [layoutDaCarta, rengoku, tomioka, obanai ,sanemi,mitsuri,gyumei,tokito,uzui,shinobu,dakiGyutaro,kaigaku,kokushibou,hantengu,gyokku,douma,nakime,akaza];
-let cartaSelecionada = [ ];
-let cartaComp = [ ]
+let cards = [layoutDaCarta, rengoku, tomioka, obanai, sanemi, mitsuri, gyumei, tokito, uzui, shinobu, dakiGyutaro, kaigaku, kokushibou, hantengu, gyokku, douma, nakime, akaza];
 
- let cartasDoComp = [...cards]
- let cartasDoPlayer = [...cards]
+let cartaSelecionada = [];
+let cartaComp = []
 
 
-function padraoCard(){
+function padraoCard() {
     cartaSelecionada = cards[0]
     cartaComp = cards[0]
-    deckComp.setAttribute('src',cartaSelecionada.imagem);
-    image.setAttribute('src',cartaSelecionada.imagem);
-    imageComp.setAttribute('src',cartaSelecionada.imagem);
-    deckPlayer.setAttribute('src',cartaSelecionada.imagem);
-    cartasPlayer.innerHTML = `Player: ${cartasDoPlayer.length} cartas`
-    cartascomp.innerHTML = `Comp: ${cartasDoComp.length} cartas`
-    
+    deckComp.setAttribute('src', cartaSelecionada.imagem);
+    image.setAttribute('src', cartaSelecionada.imagem);
+    imageComp.setAttribute('src', cartaSelecionada.imagem);
+    cartasPlayer.innerHTML = `Player: ${cards.length} cartas`
+    cartascomp.innerHTML = `Comp: ${cards.length} cartas`
+
 }
 
-function padraoCardComp(){
+function padraoCardComp() {
     cartaComp = cards[0]
-    imageComp.setAttribute('src',cartaSelecionada.imagem);
+    imageComp.setAttribute('src', cartaSelecionada.imagem);
 }
 
 
-function mostrarCard(){
-    image.setAttribute('src',cartaSelecionada.imagem); 
-    imageComp.setAttribute('src',cartaComp.imagem); 
+function mostrarCard() {
+    image.setAttribute('src', cartaSelecionada.imagem);
+    imageComp.setAttribute('src', cartaComp.imagem);
 }
 
-deckPlayer.addEventListener('click', function(){
+function habilitarDeck() {
+    let deck = document.getElementById('deck-player').setAttribute('onclick', "comprar()")
+    deck
+}
+
+function habilitardefeza() {
+    let defeza = document.getElementById('btn-defender').setAttribute('onclick', "defender()")
+    defeza
+
+}
+
+function habilitarAtaque() {
+    let ataque = document.getElementById('btn-atacar').setAttribute('onclick', "atacar()")
+    ataque
+
+}
+
+function desabilitarAtaqueDefeza(){
+    let ataque = document.getElementById('btn-atacar').setAttribute('onclick', 'disabled')
+    ataque
+
+    let defeza = document.getElementById('btn-defender').setAttribute('onclick', 'disabled')
+    defeza
+
+}
+
+function comprar() {
+    let deck = document.getElementById('deck-player').setAttribute('onclick', "disabled")
+    deck
     padraoCardComp()
     indice++
-    if(indice < cards.length ){
+    if (indice < cards.length) {
         cartaSelecionada = cards[indice]
         mostrarCard()
+        habilitarAtaque()
+        habilitardefeza()
+
     }
-})
+}
 
-atacar.addEventListener('click', function(){
+function atacar() {
     rand = Math.floor(Math.random() * cards.length + 1)
     cartaComp = cards[rand]
     mostrarCard()
-   setTimeout(() => {
-       if(cartaSelecionada.ataque > cartaComp.ataque){
-           alert('voce ganhou')
-       }else if(cartaSelecionada.ataque === cartaComp.ataque){
-           alert('empatou')
-       }else{
-           alert('voce peerdeu')
-       }
-    
-   }, 1000);
-})
-
-defender.addEventListener('click', function(){
-    rand = Math.floor(Math.random() * cards.length + 1)
-    cartaComp = cards[rand]
-    mostrarCard()
+    desabilitarAtaqueDefeza()
     setTimeout(() => {
-        if(cartaSelecionada.defesa> cartaComp.defesa){
+        if (cartaSelecionada.ataque > cartaComp.ataque) {
             alert('voce ganhou')
-        }else if(cartaSelecionada.defesa === cartaComp.defesa){
+        } else if (cartaSelecionada.ataque === cartaComp.ataque) {
             alert('empatou')
-        }else{
+        } else {
             alert('voce peerdeu')
         }
-     
-    }, 1000);
-})
 
-//  
-padraoCard()
+    }, 2000);
+
+    habilitarDeck()
+}
+
+function defender() {
+    rand = Math.floor(Math.random() * cards.length + 1)
+    cartaComp = cards[rand]
+    mostrarCard()
+    desabilitarAtaqueDefeza()
+    setTimeout(() => {
+        if (cartaSelecionada.defesa > cartaComp.defesa) {
+            alert('voce ganhou')
+        } else if (cartaSelecionada.defesa === cartaComp.defesa) {
+            alert('empatou')
+        } else {
+            alert('voce peerdeu')
+        }
+
+    }, 1000);
+
+    habilitarDeck()
+}
+
+function render() {
+    padraoCard()
+
+}
+
+render()

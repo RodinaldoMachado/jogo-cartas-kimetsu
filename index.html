@@ -20,17 +20,20 @@
         </div>
 
         <div class="area-deck-comp">
-        <div class="card deck deck-comp">
-            <div class="box-img">
-                <img id="deck-comp" alt="">
-            </div>
-        </div>    
+            <div class="card deck deck-comp">
+                <div class="box-img">
+                    <img id="deck-comp" alt="">
+                </div>
+            </div>    
+            <p>Comp</p>
         </div>
         
         <div class="area-deck-player">
+            <p>Player</p>
         <div class="card deck deck-player">
             <div class="box-img">
-                <img id="deck-player" alt="">
+                <img src="src/img/18.png" alt="">
+                <button id="deck-player" onclick="comprar()" alt="">comprar</button>
             </div>
         </div>
         </div>
@@ -44,8 +47,10 @@
             </div>
         </div>
         <div class="imagens-botao">
-            <img src="src/img/atacar.png" id="btn-atacar"></img>
-            <img src="src/img/defender.png" id="btn-defender"></img>
+            <button id="btn-atacar" onclick="atacar()">atacar</button>
+            <img src="src/img/atacar.png"></img>
+            <button id="btn-defender" onclick="defender()">defender</button>
+            <img src="src/img/defender.png" ></img>
         </div>
         
         <div class="carta-comp">
