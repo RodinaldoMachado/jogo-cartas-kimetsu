@@ -256,7 +256,7 @@ function defender() {
 
 function render() {
     padraoCard()
-
+    desabilitarAtaqueDefeza()
 }
 
 render()
