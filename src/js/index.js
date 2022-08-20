@@ -148,33 +148,47 @@ const gyokku = {
     defesa: 7
 }
 
+let rand = 0
+let deletar 
 let indice = 0
-let cards = [layoutDaCarta, rengoku, tomioka, obanai, sanemi, mitsuri, gyumei, tokito, uzui, shinobu, dakiGyutaro, kaigaku, kokushibou, hantengu, gyokku, douma, nakime, akaza];
+let cards = [rengoku, tomioka, obanai, sanemi, mitsuri, gyumei, tokito, uzui, shinobu, dakiGyutaro, kaigaku, kokushibou, hantengu, gyokku, douma, nakime, akaza];
 
+let baralhoPlayer = []
 let cartaSelecionada = [];
 let cartaComp = []
+baralhoPlayer = [...cards]
+baralhoComp = [...cards]
+cartaSelecionada = baralhoPlayer.sort(function () { return 0.5 - Math.random() });
+cartaComp = baralhoComp.sort(function () { return 0.5 - Math.random() });
 
 
 function padraoCard() {
-    cartaSelecionada = cards[0]
-    cartaComp = cards[0]
-    deckComp.setAttribute('src', cartaSelecionada.imagem);
-    image.setAttribute('src', cartaSelecionada.imagem);
-    imageComp.setAttribute('src', cartaSelecionada.imagem);
-    cartasPlayer.innerHTML = `Player: ${cards.length} cartas`
-    cartascomp.innerHTML = `Comp: ${cards.length} cartas`
+    deckComp.setAttribute('src', layoutDaCarta.imagem);
+    image.setAttribute('src', layoutDaCarta.imagem);
+    imageComp.setAttribute('src', layoutDaCarta.imagem);
+    cartasPlayer.innerHTML = `Player: ${cartaSelecionada.length} cartas`
+    cartascomp.innerHTML = `Comp: ${cartaComp.length} cartas`
 
 }
+
 
 function padraoCardComp() {
-    cartaComp = cards[0]
-    imageComp.setAttribute('src', cartaSelecionada.imagem);
+    cartaComp = layoutDaCarta
+    imageComp.setAttribute('src', layoutDaCarta.imagem);
 }
 
+function atualizarPlacar() {
+    cartasPlayer.innerHTML = `Player: ${baralhoPlayer.length} cartas`
+    cartascomp.innerHTML = `Comp: ${baralhoComp.length} cartas`
+}
 
-function mostrarCard() {
-    image.setAttribute('src', cartaSelecionada.imagem);
-    imageComp.setAttribute('src', cartaComp.imagem);
+function mostrarCardPlayer() {
+    image.setAttribute('src', baralhoPlayer[indice].imagem);
+}
+
+function mostrarCardComp(){
+    imageComp.setAttribute('src', baralhoComp[rand].imagem);
+    
 }
 
 function habilitarDeck() {
@@ -184,25 +198,25 @@ function habilitarDeck() {
 
 function habilitardefeza() {
     let defeza = document.getElementById('btn-defender').setAttribute('onclick', "defender()")
-    defeza = document.getElementById('btn-defender').setAttribute('style','background-color:green')
+    defeza = document.getElementById('btn-defender').setAttribute('style', 'background-color:green')
     defeza
 
 }
 
 function habilitarAtaque() {
     let ataque = document.getElementById('btn-atacar').setAttribute('onclick', "atacar()")
-    ataque = document.getElementById('btn-atacar').setAttribute('style','background-color:green')
+    ataque = document.getElementById('btn-atacar').setAttribute('style', 'background-color:green')
     ataque
 
 }
 
-function desabilitarAtaqueDefeza(){
+function desabilitarAtaqueDefeza() {
     let ataque = document.getElementById('btn-atacar').setAttribute('onclick', '')
-    ataque = document.getElementById('btn-atacar').setAttribute('style','background-color:red')
+    ataque = document.getElementById('btn-atacar').setAttribute('style', 'background-color:red')
     ataque
 
     let defeza = document.getElementById('btn-defender').setAttribute('onclick', '')
-    defeza = document.getElementById('btn-defender').setAttribute('style','background-color:red')
+    defeza = document.getElementById('btn-defender').setAttribute('style', 'background-color:red')
     defeza
 
 }
@@ -212,47 +226,66 @@ function comprar() {
     deck
     padraoCardComp()
     indice++
-    if (indice < cards.length) {
-        cartaSelecionada = cards[indice]
-        mostrarCard()
+    if (indice < baralhoPlayer.length) {
+        cartaSelecionada = baralhoPlayer[indice]
+        mostrarCardPlayer()
         habilitarAtaque()
         habilitardefeza()
         mensagem.innerHTML = ''
 
+    } else {
+        cartaSelecionada = layoutDaCarta.imagem
+        mensagem.innerHTML = 'acabou o jogo'
     }
 }
 
 function atacar() {
-    rand = Math.floor(Math.random() * cards.length + 1)
-    cartaComp = cards[rand]
-    mostrarCard()
+    rand++
+    cartaComp = baralhoComp[rand]
+    mostrarCardComp()
     desabilitarAtaqueDefeza()
     setTimeout(() => {
         if (cartaSelecionada.ataque > cartaComp.ataque) {
+            baralhoPlayer.push(baralhoComp[rand])
+            rand--
+            baralhoComp.splice(rand,1)
             mensagem.innerHTML = 'voce ganhou'
+            atualizarPlacar()
         } else if (cartaSelecionada.ataque === cartaComp.ataque) {
             mensagem.innerHTML = 'empatou'
         } else {
+            baralhoComp.push(baralhoPlayer[indice])
+            indice--
+            baralhoPlayer.splice(indice,1)
             mensagem.innerHTML = 'voce peerdeu'
+            atualizarPlacar()
         }
-
-    }, 2000);
+        
+    }, 1000);
 
     habilitarDeck()
 }
 
 function defender() {
-    rand = Math.floor(Math.random() * cards.length + 1)
-    cartaComp = cards[rand]
-    mostrarCard()
+    rand++
+    cartaComp = baralhoComp[rand]
+    mostrarCardComp()
     desabilitarAtaqueDefeza()
     setTimeout(() => {
         if (cartaSelecionada.defesa > cartaComp.defesa) {
+            baralhoPlayer.push(baralhoComp[rand])
+            rand--
+            baralhoComp.splice(rand,1)
             mensagem.innerHTML = 'voce ganhou'
+            atualizarPlacar()
         } else if (cartaSelecionada.defesa === cartaComp.defesa) {
             mensagem.innerHTML = 'empatou'
         } else {
+            baralhoComp.push(baralhoPlayer[indice])
+            indice--
+            baralhoPlayer.splice(indice,1)
             mensagem.innerHTML = 'voce peerdeu'
+            atualizarPlacar()
         }
 
     }, 1000);
