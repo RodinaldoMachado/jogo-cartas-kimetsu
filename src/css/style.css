@@ -34,6 +34,7 @@ main .placar h3 {
 }
 
 .tabuleiro {
+    position: relative;
     grid-area: t;
     display: flex;
     align-items: center;
@@ -53,15 +54,13 @@ main .placar h3 {
 .card .box-img{
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
     
 }
 
 .card .box-img button{
-    position: absolute;
+    border: none;
+    width: 100%;
+    height: 100%;
 }
 
 .card img {
@@ -107,6 +106,13 @@ main .imagens-botao{
 main .imagens-botao img{
     width: 75px;
     height: 50px;
-    cursor: pointer;
     
 } 
+
+#mensagem-da-rodada{
+    position: absolute;
+    top: 20px;
+    background-color: #f5f5f5;
+    padding: 5px;
+    border: 1px solid #000;
+}

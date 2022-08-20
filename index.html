@@ -24,43 +24,45 @@
                 <div class="box-img">
                     <img id="deck-comp" alt="">
                 </div>
-            </div>    
+            </div>
             <p>Comp</p>
         </div>
-        
+
         <div class="area-deck-player">
             <p>Player</p>
-        <div class="card deck deck-player">
-            <div class="box-img">
-                <img src="src/img/18.png" alt="">
-                <button id="deck-player" onclick="comprar()" alt="">comprar</button>
-            </div>
+            <div class="card deck deck-player">
+                <button id="deck-player" onclick="comprar()" alt="">
+                    <div class="box-img">
+                        <img src="src/img/18.png" alt="">
+                    </div>
+                </button>
+                </div>
         </div>
-        </div>
-        
+
         <div class="tabuleiro">
-        <div class="carta-player">
-            <div class="card ">
-                <div class="box-img">
-                    <img id="image" alt="">
+            <span id="mensagem-da-rodada"></span>
+            <div class="carta-player">
+                <div class="card ">
+                    <div class="box-img">
+                        <img id="image" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="imagens-botao">
+                <button id="btn-atacar" onclick="atacar()">atacar</button>
+                <img src="src/img/atacar.png"></img>
+                <button id="btn-defender" onclick="defender()">defender</button>
+                <img src="src/img/defender.png"></img>
+            </div>
+
+            <div class="carta-comp">
+                <div class="card">
+                    <div class="box-img">
+                        <img id="image-comp" alt="">
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="imagens-botao">
-            <button id="btn-atacar" onclick="atacar()">atacar</button>
-            <img src="src/img/atacar.png"></img>
-            <button id="btn-defender" onclick="defender()">defender</button>
-            <img src="src/img/defender.png" ></img>
-        </div>
-        
-        <div class="carta-comp">
-            <div class="card">
-                <div class="box-img">
-                    <img id="image-comp" alt="">
-                </div>
-            </div> 
-        </div>
-    </div>
     </main>
 
     <script src="./src/js/index.js"></script>

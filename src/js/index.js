@@ -6,6 +6,7 @@ let deckComp = document.getElementById('deck-comp');
 document.getElementById('btn-defender')
 let cartasPlayer = document.getElementById('cartas-player')
 let cartascomp = document.getElementById('cartas-comp')
+let mensagem = document.getElementById('mensagem-da-rodada')
 
 const layoutDaCarta = {
     imagem: 'src/img/18.png',
@@ -183,27 +184,31 @@ function habilitarDeck() {
 
 function habilitardefeza() {
     let defeza = document.getElementById('btn-defender').setAttribute('onclick', "defender()")
+    defeza = document.getElementById('btn-defender').setAttribute('style','background-color:green')
     defeza
 
 }
 
 function habilitarAtaque() {
     let ataque = document.getElementById('btn-atacar').setAttribute('onclick', "atacar()")
+    ataque = document.getElementById('btn-atacar').setAttribute('style','background-color:green')
     ataque
 
 }
 
 function desabilitarAtaqueDefeza(){
-    let ataque = document.getElementById('btn-atacar').setAttribute('onclick', 'disabled')
+    let ataque = document.getElementById('btn-atacar').setAttribute('onclick', '')
+    ataque = document.getElementById('btn-atacar').setAttribute('style','background-color:red')
     ataque
 
-    let defeza = document.getElementById('btn-defender').setAttribute('onclick', 'disabled')
+    let defeza = document.getElementById('btn-defender').setAttribute('onclick', '')
+    defeza = document.getElementById('btn-defender').setAttribute('style','background-color:red')
     defeza
 
 }
 
 function comprar() {
-    let deck = document.getElementById('deck-player').setAttribute('onclick', "disabled")
+    let deck = document.getElementById('deck-player').setAttribute('onclick', "")
     deck
     padraoCardComp()
     indice++
@@ -212,6 +217,7 @@ function comprar() {
         mostrarCard()
         habilitarAtaque()
         habilitardefeza()
+        mensagem.innerHTML = ''
 
     }
 }
@@ -223,11 +229,11 @@ function atacar() {
     desabilitarAtaqueDefeza()
     setTimeout(() => {
         if (cartaSelecionada.ataque > cartaComp.ataque) {
-            alert('voce ganhou')
+            mensagem.innerHTML = 'voce ganhou'
         } else if (cartaSelecionada.ataque === cartaComp.ataque) {
-            alert('empatou')
+            mensagem.innerHTML = 'empatou'
         } else {
-            alert('voce peerdeu')
+            mensagem.innerHTML = 'voce peerdeu'
         }
 
     }, 2000);
@@ -242,11 +248,11 @@ function defender() {
     desabilitarAtaqueDefeza()
     setTimeout(() => {
         if (cartaSelecionada.defesa > cartaComp.defesa) {
-            alert('voce ganhou')
+            mensagem.innerHTML = 'voce ganhou'
         } else if (cartaSelecionada.defesa === cartaComp.defesa) {
-            alert('empatou')
+            mensagem.innerHTML = 'empatou'
         } else {
-            alert('voce peerdeu')
+            mensagem.innerHTML = 'voce peerdeu'
         }
 
     }, 1000);
