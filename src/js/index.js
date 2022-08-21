@@ -160,6 +160,8 @@ baralhoPlayer = [...cards]
 baralhoComp = [...cards]
 cartaSelecionada = baralhoPlayer.sort(function () { return 0.5 - Math.random() });
 cartaComp = baralhoComp.sort(function () { return 0.5 - Math.random() });
+let player = baralhoPlayer.length
+let comp = baralhoComp.length
 
 
 function padraoCard() {
@@ -188,7 +190,7 @@ function mostrarCardPlayer() {
 
 function mostrarCardComp() {
     imageComp.setAttribute('src', baralhoComp[rand].imagem);
-
+    
 }
 
 function habilitarDeck() {
@@ -200,25 +202,25 @@ function habilitardefeza() {
     let defeza = document.getElementById('btn-defender').setAttribute('onclick', "defender()")
     defeza = document.getElementById('btn-defender').setAttribute('style', 'background-color:green')
     defeza
-
+    
 }
 
 function habilitarAtaque() {
     let ataque = document.getElementById('btn-atacar').setAttribute('onclick', "atacar()")
     ataque = document.getElementById('btn-atacar').setAttribute('style', 'background-color:green')
     ataque
-
+    
 }
 
 function desabilitarAtaqueDefeza() {
     let ataque = document.getElementById('btn-atacar').setAttribute('onclick', '')
     ataque = document.getElementById('btn-atacar').setAttribute('style', 'background-color:red')
     ataque
-
+    
     let defeza = document.getElementById('btn-defender').setAttribute('onclick', '')
     defeza = document.getElementById('btn-defender').setAttribute('style', 'background-color:red')
     defeza
-
+    
 }
 
 function comprar() {
