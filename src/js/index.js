@@ -233,13 +233,7 @@ function comprar() {
         habilitardefeza()
         mensagem.innerHTML = ''
         console.log(contador);
-
-
-    } else if (indice === baralhoPlayer.length) {
-        indice = 0
-
-    } else {
-        cartaSelecionada = layoutDaCarta.imagem
+    } else {    
         mensagem.innerHTML = 'acabou o jogo'
     }
 }
