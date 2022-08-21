@@ -149,7 +149,7 @@ const gyokku = {
 }
 
 let rand = 0
-let deletar 
+let contador = 0
 let indice = 0
 let cards = [rengoku, tomioka, obanai, sanemi, mitsuri, gyumei, tokito, uzui, shinobu, dakiGyutaro, kaigaku, kokushibou, hantengu, gyokku, douma, nakime, akaza];
 
@@ -186,9 +186,9 @@ function mostrarCardPlayer() {
     image.setAttribute('src', baralhoPlayer[indice].imagem);
 }
 
-function mostrarCardComp(){
+function mostrarCardComp() {
     imageComp.setAttribute('src', baralhoComp[rand].imagem);
-    
+
 }
 
 function habilitarDeck() {
@@ -225,13 +225,18 @@ function comprar() {
     let deck = document.getElementById('deck-player').setAttribute('onclick', "")
     deck
     padraoCardComp()
-    indice++
+    contador++
     if (indice < baralhoPlayer.length) {
         cartaSelecionada = baralhoPlayer[indice]
         mostrarCardPlayer()
         habilitarAtaque()
         habilitardefeza()
         mensagem.innerHTML = ''
+        console.log(contador);
+
+
+    } else if (indice === baralhoPlayer.length) {
+        indice = 0
 
     } else {
         cartaSelecionada = layoutDaCarta.imagem
@@ -240,52 +245,72 @@ function comprar() {
 }
 
 function atacar() {
-    rand++
+    rand
     cartaComp = baralhoComp[rand]
     mostrarCardComp()
     desabilitarAtaqueDefeza()
     setTimeout(() => {
         if (cartaSelecionada.ataque > cartaComp.ataque) {
+            baralhoPlayer.push(baralhoPlayer[0])
+            baralhoPlayer.splice(0, 1)
             baralhoPlayer.push(baralhoComp[rand])
-            rand--
-            baralhoComp.splice(rand,1)
+            baralhoComp.splice(0, 1)
             mensagem.innerHTML = 'voce ganhou'
             atualizarPlacar()
+            console.log(baralhoPlayer);
         } else if (cartaSelecionada.ataque === cartaComp.ataque) {
+            baralhoPlayer.push(baralhoPlayer[0])
+            baralhoPlayer.splice(0, 1)
+            baralhoComp.push(baralhoComp[0])
+            baralhoComp.splice(0, 1)
             mensagem.innerHTML = 'empatou'
-        } else {
-            baralhoComp.push(baralhoPlayer[indice])
-            indice--
-            baralhoPlayer.splice(indice,1)
+        } else if (cartaSelecionada.ataque < cartaComp.ataque) {
+            baralhoComp.push(baralhoComp[0])
+            baralhoComp.splice(0,1)
+            baralhoComp.push(baralhoPlayer[0])
+            baralhoPlayer.splice(0, 1)
             mensagem.innerHTML = 'voce peerdeu'
             atualizarPlacar()
         }
-        
+        else {
+            return
+        }
+
     }, 1000);
 
     habilitarDeck()
 }
 
 function defender() {
-    rand++
+    rand
     cartaComp = baralhoComp[rand]
     mostrarCardComp()
     desabilitarAtaqueDefeza()
     setTimeout(() => {
         if (cartaSelecionada.defesa > cartaComp.defesa) {
+            baralhoPlayer.push(baralhoPlayer[0])
+            baralhoPlayer.splice(0, 1)
             baralhoPlayer.push(baralhoComp[rand])
-            rand--
-            baralhoComp.splice(rand,1)
+            baralhoComp.splice(0, 1)
             mensagem.innerHTML = 'voce ganhou'
             atualizarPlacar()
+            console.log(baralhoPlayer);
         } else if (cartaSelecionada.defesa === cartaComp.defesa) {
+            baralhoPlayer.push(baralhoPlayer[0])
+            baralhoPlayer.splice(0, 1)
+            baralhoComp.push(baralhoComp[0])
+            baralhoComp.splice(0, 1)
             mensagem.innerHTML = 'empatou'
-        } else {
-            baralhoComp.push(baralhoPlayer[indice])
-            indice--
-            baralhoPlayer.splice(indice,1)
+        } else if (cartaSelecionada.defesa < cartaComp.defesa) {
+            baralhoComp.push(baralhoComp[0])
+            baralhoComp.splice(0,1)
+            baralhoComp.push(baralhoPlayer[0])
+            baralhoPlayer.splice(0, 1)
             mensagem.innerHTML = 'voce peerdeu'
             atualizarPlacar()
+        }
+        else {
+            return
         }
 
     }, 1000);
