@@ -168,8 +168,8 @@ function padraoCard() {
     deckComp.setAttribute('src', layoutDaCarta.imagem);
     image.setAttribute('src', layoutDaCarta.imagem);
     imageComp.setAttribute('src', layoutDaCarta.imagem);
-    cartasPlayer.innerHTML = `Player: ${cartaSelecionada.length} cartas`
-    cartascomp.innerHTML = `Comp: ${cartaComp.length} cartas`
+    cartasPlayer.innerHTML = `Player: ${baralhoPlayer.length} cartas`
+    cartascomp.innerHTML = `Comp: ${baralhoComp.length} cartas`
 
 }
 
