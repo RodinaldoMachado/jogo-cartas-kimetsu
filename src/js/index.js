@@ -228,16 +228,14 @@ function comprar() {
     deck
     padraoCardComp()
     contador++
-    if (indice < baralhoPlayer.length) {
+    if (player !== 0) {
         cartaSelecionada = baralhoPlayer[indice]
         mostrarCardPlayer()
         habilitarAtaque()
         habilitardefeza()
         mensagem.innerHTML = ''
         console.log(contador);
-    } else {    
-        mensagem.innerHTML = 'acabou o jogo'
-    }
+   
 }
 
 function atacar() {
@@ -272,7 +270,7 @@ function atacar() {
             return
         }
 
-    }, 1000);
+    }, 200);
 
     habilitarDeck()
 }
@@ -309,7 +307,7 @@ function defender() {
             return
         }
 
-    }, 1000);
+    }, 200);
 
     habilitarDeck()
 }
