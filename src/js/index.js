@@ -234,7 +234,6 @@ function comprar() {
         habilitarAtaque()
         habilitardefeza()
         mensagem.innerHTML = ''
-        console.log(contador);
     } else if(baralhoComp,length === 0){    
         alert('Parabéns você ganhou')  
     
@@ -256,7 +255,6 @@ function atacar() {
             baralhoComp.splice(0, 1)
             mensagem.innerHTML = 'voce ganhou'
             atualizarPlacar()
-            console.log(baralhoPlayer);
         } else if (cartaSelecionada.ataque === cartaComp.ataque) {
             baralhoPlayer.push(baralhoPlayer[0])
             baralhoPlayer.splice(0, 1)
@@ -293,7 +291,6 @@ function defender() {
             baralhoComp.splice(0, 1)
             mensagem.innerHTML = 'voce ganhou'
             atualizarPlacar()
-            console.log(baralhoPlayer);
         } else if (cartaSelecionada.defesa === cartaComp.defesa) {
             baralhoPlayer.push(baralhoPlayer[0])
             baralhoPlayer.splice(0, 1)
