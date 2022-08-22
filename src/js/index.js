@@ -237,6 +237,7 @@ function comprar() {
         console.log(contador);
    
 }
+}
 
 function atacar() {
     rand
