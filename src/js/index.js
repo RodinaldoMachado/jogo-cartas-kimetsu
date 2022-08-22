@@ -319,4 +319,10 @@ function render() {
     desabilitarAtaqueDefeza()
 }
 
+const reset = document.getElementById('reset')
+reset.addEventListener('click', function() {
+    window.location.reload()
+})
+
+
 render()
