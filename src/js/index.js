@@ -235,8 +235,12 @@ function comprar() {
         habilitardefeza()
         mensagem.innerHTML = ''
         console.log(contador);
-   
-}
+    } else if(baralhoComp,length === 0){    
+        alert('Parabéns você ganhou')  
+    
+    } else if(baralhoPlayer.length === 0){    
+        alert('Que pena você perdeu') 
+    }
 }
 
 function atacar() {
